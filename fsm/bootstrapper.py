@@ -1,9 +1,10 @@
 from time import process_time
 
-from fsm import Fsm
-from state import State
-from transition import Transition
+from .fsm.fsm import Fsm
+from .fsm.state import State
+from .fsm.transition import Transition
 
+# create a function delay 
 
 class Bootstrapper(object):
     """" boot the simple fsm """
