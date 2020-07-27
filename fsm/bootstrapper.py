@@ -1,10 +1,8 @@
-from time import process_time
-
 from .fsm.fsm import Fsm
 from .fsm.state import State
 from .fsm.transition import Transition
+from .fsm.functions import tick
 
-# create a function delay 
 
 class Bootstrapper(object):
     """" boot the simple fsm """
@@ -32,9 +30,6 @@ class Bootstrapper(object):
         i = 0
         while True:
             try:
-                start_time = process_time()
-                while start_time + 2 > process_time():
-                    pass
                 self.fsm.to_transition(transition[i])
                 self.execute()
                 i = i+1
@@ -57,9 +52,7 @@ class IDLE(State):
 
     def execute(self):
         print('\t>> State IDLE execute')
-        start_time = process_time()
-        while start_time + 2 > process_time():
-            pass
+        tick()
 
     def exit(self):
         print("\t> IDLE exit")
@@ -73,12 +66,11 @@ class ON(State):
     def enter(self):
         print("\t\t>>>ON enter")
         super(ON, self).enter()
+        print(ON.__mro__) # method resolution order
 
     def execute(self):
         print("\t\t>> State ON execute")
-        start_time = process_time()
-        while start_time + 2 > process_time():
-            pass
+        tick()
 
     def exit(self):
         print("\t\t> State ON exit")
@@ -87,6 +79,7 @@ class ON(State):
 class OFF(State):
     """ stop fsm """
     def __init__(self, fsm):
+        # call the init from state and set the name of the class
         super(OFF, self).__init__(fsm)
 
     def enter(self):
@@ -95,9 +88,7 @@ class OFF(State):
 
     def execute(self):
         print("\t\t\t>> State OFF execute")
-        start_time = process_time()
-        while start_time + 2 > process_time():
-            pass
+        tick()
 
     def exit(self):
         print("\t\t\t> State OFF exit")

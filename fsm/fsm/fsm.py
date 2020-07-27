@@ -12,13 +12,13 @@ class Fsm(object):
 
     def add_transition(self, trans_name, transition):
         self.transitions[trans_name] = transition
-        print('FSM method add_transition trans name: {0}, transition: {1}'
-                      .format(trans_name, transition.to_state))
+        print('FSM method add_transition name: {0}, transition: {1}'
+              .format(trans_name, transition.to_state))
 
     def add_state(self, state_name, state):
         self.states[state_name] = state
-        print('FSM state : {0}, preview state: {1}, current state: {2}'
-                .format(state_name, state.fsm.preview_state, state.fsm.current_state))
+        print('FSM state : {0}, preview: {1}, current: {2}'
+              .format(state_name, state.fsm.preview_state, state.fsm.current_state))
 
     def set_state(self, state_name):
         self.preview_state = self.current_state
